@@ -16,6 +16,7 @@ export default function CreateEvent() {
     location: '', postCode: '', description: ''
   });
   const [successMessage, setSuccessMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
   const [loading, setLoading] = useState(true);
   const router = useRouter();
 
@@ -37,7 +38,6 @@ export default function CreateEvent() {
       const res = await api.post('/event/create', form, {
         headers: { Authorization: token }
       });
-      console.log("resssss: ", res);
 
       if (res.status === 200) {
         // alert(res.data.Message);
@@ -58,7 +58,8 @@ export default function CreateEvent() {
 
       }
     } catch (err) {
-      console.error("Full error response:", err.response);
+      // console.error("Full error response:", err.response);
+      setErrorMessage(err.response?.data?.Error);
       // alert(err.response?.data?.Error || 'Error creating event');
     }
     
@@ -71,6 +72,7 @@ export default function CreateEvent() {
       <Typography variant="h4" gutterBottom>Create Event</Typography>
 
       {successMessage && <Alert severity="success">{successMessage}</Alert>}
+      {errorMessage && <Alert severity="error">{errorMessage}</Alert>}
 
       <Box component="form" onSubmit={handleSubmit} mt={2} display="flex" flexDirection="column" gap={2}>
         <TextField label="Title" name="title" value={form.title} onChange={handleChange} required />
@@ -80,6 +82,7 @@ export default function CreateEvent() {
           name="sportType"
           value={form.sportType}
           onChange={handleChange}
+          data-cy="sport-filter"
           required
         >
           <MenuItem value="football">Football</MenuItem>

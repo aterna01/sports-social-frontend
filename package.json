@@ -6,7 +6,10 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "test": "jest --coverage",
+    "cypress:ui": "npx cypress open",
+    "cypress:cli": "npx cypress run --browser firefox"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",
@@ -23,8 +26,10 @@
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.3.0",
     "@testing-library/user-event": "^14.6.1",
+    "cypress": "^14.3.2",
     "eslint": "^9",
     "eslint-config-next": "15.3.1",
-    "jest": "^29.7.0"
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0"
   }
 }

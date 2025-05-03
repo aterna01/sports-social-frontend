@@ -1,6 +1,5 @@
 'use client';
 
-// pages/events.js
 import { useEffect, useState } from 'react';
 import api from '../../lib/api';
 import { useAuth } from '../../context/auth-context';
@@ -34,7 +33,7 @@ export default function Events() {
       setEvents(res.data.Events || []);
       setError('');
     } catch (err) {
-      console.error(err);
+      // console.error(err);
       alert('Failed to fetch events');
     } finally {
       setLoading(false);
@@ -72,7 +71,6 @@ export default function Events() {
         setError('You need to be logged in to join an event.');
         return;
       }
-      // console.log("errorrrrr", err.response);
       setError(err.response?.data?.Message || 'Could not join event');
     }
   };
@@ -91,6 +89,7 @@ export default function Events() {
           label="Filter by Sport"
           value={sportType}
           onChange={(e) => setSportType(e.target.value)}
+          data-cy="sport-filter"
         >
           <MenuItem value="">All Sports</MenuItem>
           {SPORT_OPTIONS.map((sport) => (
@@ -110,9 +109,9 @@ export default function Events() {
             const alreadyJoined = event.participants.includes(user?.email);
 
             return (
-              <Grid key={i}>
+              <Grid key={i} >
                 <Card elevation={3}>
-                  <CardContent>
+                  <CardContent data-cy={`event-${event.title.replace(/\s+/g, '-').toLowerCase()}`}>
                     <Typography variant="h6">{event.title}</Typography>
                     <Typography variant="subtitle2" color="text.secondary" gutterBottom>
                       {event.sportType} — {event.date} at {event.time}
@@ -133,6 +132,7 @@ export default function Events() {
                       size="small"
                       onClick={() => handleJoin(event)}
                       disabled={alreadyJoined}
+                      data-cy="join-btn"
                     >
                       {alreadyJoined ? 'Already Joined' : 'Join Event'}
                     </Button>
