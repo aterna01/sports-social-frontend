@@ -40,7 +40,6 @@ export default function CreateEvent() {
       });
 
       if (res.status === 200) {
-        // alert(res.data.Message);
         setSuccessMessage(res.data.Message); // ✅ Show success on screen
   
         // ✅ Reset the form fields to empty
@@ -53,14 +52,9 @@ export default function CreateEvent() {
           postCode: '',
           description: ''
         });
-
-        // router.push('/events');
-
       }
     } catch (err) {
-      // console.error("Full error response:", err.response);
       setErrorMessage(err.response?.data?.Error);
-      // alert(err.response?.data?.Error || 'Error creating event');
     }
     
   };

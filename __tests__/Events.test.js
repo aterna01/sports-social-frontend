@@ -143,24 +143,6 @@ describe('Events Page', () => {
     expect(await screen.findByText(/no events found/i)).toBeInTheDocument();
   });
 
-  // it('handles error if initial fetch fails', async () => {
-  //   api.get.mockRejectedValueOnce({
-  //     response: { status: 500 },
-  //   });
-  
-  //   // Mock alert
-  //   const originalAlert = window.alert;
-  //   window.alert = jest.fn();
-  
-  //   render(<Events />);
-  
-  //   await waitFor(() => {
-  //     expect(window.alert).toHaveBeenCalledWith('Failed to fetch events');
-  //   });
-  
-  //   window.alert = originalAlert;
-  // });
-
   it('handles case where Events data is missing', async () => {
     api.get.mockResolvedValueOnce({
       data: {}, // <-- no "Events" key!
@@ -169,9 +151,6 @@ describe('Events Page', () => {
     render(<Events />);
     expect(await screen.findByText(/no events found/i)).toBeInTheDocument();
   });
-
-  
-  
 
   it('shows error message on join failure', async () => {
     const mockEvent = {

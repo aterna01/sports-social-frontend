@@ -13,7 +13,7 @@ export default function Home() {
       textAlign="center"
     >
       <Typography variant="h3" gutterBottom>
-        Welcome to Sports Social
+        Welcome to Sports Social App - Connect With Local Players
       </Typography>
       <Typography variant="h6">
         Find, create, and join local sports events near you.
