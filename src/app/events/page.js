@@ -33,6 +33,7 @@ export default function Events() {
       setEvents(res.data.Events || []);
       setError('');
     } catch (err) {
+      alert('Failed to fetch events');
     } finally {
       setLoading(false);
     }
