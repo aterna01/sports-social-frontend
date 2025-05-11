@@ -24,29 +24,6 @@ export default function Login() {
         login(res.data.authToken, email); // update context
         router.push('/create-event');
       }
-      // } else {
-      //   setError(res.data.Error); // Show error message
-      // }
-
-
-
-      // login(res.data.authToken, email);
-      // router.push('/create-event');
-    // } catch (err) {
-    //   //  setError(err.response?.data?.Error || 'Login failed');
-
-
-    //   if (err.request) {
-    //     console.log("err.requestttt", err.request);
-    //     setError("Login failed because of the bad request, please check your email and password");
-    //   } else {
-    //     console.log("else errorrrr: ", err);
-    //     setError(`Login failed, the eror message is: ${err.message}`)
-    //   }
-    //   // console.log("errrrr: ", err);
-    //   // setErrorMessage(`Login failed, the eror message is: ${err}`);
-    //   // alert(err.response?.data?.Error || 'Login failed');
-    // }
 
     } catch (err) {
       if (err.response?.data?.Error) {
