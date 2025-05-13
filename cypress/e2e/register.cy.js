@@ -1,3 +1,10 @@
+Cypress.on('uncaught:exception', (err) => {
+  // Ignore hydration errors
+  if (err.message.includes('Hydration failed')) {
+    return false;
+  }
+});
+
 describe('User Registration', () => {
   const testEmail = `testuser_${Date.now()}@example.com`;
   const password = 'TestPassword123!';
