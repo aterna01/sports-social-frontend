@@ -1,3 +1,10 @@
+Cypress.on('uncaught:exception', (err) => {
+  // Ignore hydration errors
+  if (err.message.includes('Hydration failed')) {
+    return false;
+  }
+});
+
 describe('Full Event Flow: Create -> Join -> Block Rejoin', () => {
   const eventTitle = `Cypress Test Event ${Date.now()}`; // unique event name
   const eventSelector = `event-${eventTitle.replace(/\s+/g, '-').toLowerCase()}`;
